@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MovieCounterTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MovieList(
+                    MovieListWithCards(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -32,14 +35,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MovieList(modifier: Modifier = Modifier) {
+fun MovieCard(title: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Text(
+            text = title,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+@Composable
+fun MovieListWithCards(modifier: Modifier = Modifier) {
     val movies = listOf("Avengers", "Batman", "Spiderman", "Iron Man", "Superman")
     LazyColumn(modifier = modifier) {
         items(movies.size) { index ->
-            Text(
-                text = movies[index],
-                modifier = Modifier.padding(16.dp)
-            )
+            MovieCard(movies[index])
         }
     }
 }
@@ -48,6 +63,6 @@ fun MovieList(modifier: Modifier = Modifier) {
 @Composable
 fun MovieListPreview() {
     MovieCounterTheme {
-        MovieList()
+        MovieListWithCards()
     }
 }
