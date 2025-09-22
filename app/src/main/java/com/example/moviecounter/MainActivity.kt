@@ -47,18 +47,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MovieCard(title: String) {
+    // Componente Card para mostrar una película
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+            .padding(12.dp), // aumento de padding para mejor diseño
+        elevation = CardDefaults.cardElevation(6.dp) // elevación ligeramente mayor
     ) {
         Text(
             text = title,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(20.dp) // padding interno aumentado
         )
     }
 }
+
 
 @Composable
 fun MovieListWithCards(modifier: Modifier = Modifier) {
