@@ -62,8 +62,11 @@ fun MovieCard(title: String) {
 
 @Composable
 fun MovieListWithCards(modifier: Modifier = Modifier) {
+    // Lista de películas usando LazyColumn
     val movies = listOf("Avengers", "Batman", "Spiderman", "Iron Man", "Superman")
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        modifier = modifier.padding(8.dp) // padding externo agregado
+    ) {
         items(movies.size) { index ->
             MovieCard(movies[index])
         }
